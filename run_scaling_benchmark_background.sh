@@ -6,7 +6,7 @@ LOG_DIR="logs/distributed_scaling"
 
 mkdir -p "${LOG_DIR}"
 
-nohup .venv/bin/python benchmark_distributed_scaling.py \
+nohup .venv/bin/python code/training/benchmark_distributed_scaling.py \
   --gpu-counts 1,2,4,8 \
   --target-effective-batch 8 \
   --epochs 1 \

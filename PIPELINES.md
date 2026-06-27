@@ -2,9 +2,9 @@
 
 This repo currently has three practical pipelines:
 
-1. `synthesize_arabic_from_pdf.py` - extract Arabic text from selectable-text PDFs and generate synthetic letter-level pseudo-stroke JSON.
-2. `render_json_overlay.py` - visualize an image and its JSON coordinates together.
-3. `train_sandbox.py` - train a JSON-only LoRA model from text to stroke JSON.
+1. `code/data_augmentation/synthesize_arabic_from_pdf.py` - extract Arabic text from selectable-text PDFs and generate synthetic letter-level pseudo-stroke JSON.
+2. `code/data_augmentation/render_json_overlay.py` - visualize an image and its JSON coordinates together.
+3. `code/training/train_sandbox.py` - train a JSON-only LoRA model from text to stroke JSON.
 
 The JSON target format matches the original dataset shape:
 
@@ -30,7 +30,7 @@ pip install -r requirements.txt
 If you are training on Apple Silicon, force MPS:
 
 ```bash
-python train_sandbox.py --device mps --dry-run --max-train-samples 1 --max-val-samples 1
+python code/training/train_sandbox.py --device mps --dry-run --max-train-samples 1 --max-val-samples 1
 ```
 
 ## Pipeline 1: PDF To Synthetic Arabic Data
@@ -38,13 +38,13 @@ python train_sandbox.py --device mps --dry-run --max-train-samples 1 --max-val-s
 Script:
 
 ```bash
-python synthesize_arabic_from_pdf.py
+python code/data_augmentation/synthesize_arabic_from_pdf.py
 ```
 
 Example used for `chess2.pdf`:
 
 ```bash
-python synthesize_arabic_from_pdf.py \
+python code/data_augmentation/synthesize_arabic_from_pdf.py \
   --pdf chess2.pdf \
   --output-dir synthesis_arabic_data/chess2_test_filtered \
   --split train \
@@ -116,7 +116,7 @@ This pipeline creates synthetic glyph-boundary pseudo-strokes, not true handwrit
 Script:
 
 ```bash
-python render_json_overlay.py
+python code/data_augmentation/render_json_overlay.py
 ```
 
 ### JSON-Only View For Synthetic Data
@@ -124,7 +124,7 @@ python render_json_overlay.py
 For synthetic data, render only the JSON coordinates on a blank canvas:
 
 ```bash
-python render_json_overlay.py \
+python code/data_augmentation/render_json_overlay.py \
   --json synthesis_arabic_data/chess2_test_filtered/json/train/sample_000001_أحدثتضجةعالميةمم.json \
   --output synthesis_arabic_data/chess2_test_filtered/overlays/sample_000001_json_only.png \
   --json-only \
@@ -146,7 +146,7 @@ bottom: JSON-derived coordinate paths
 Example:
 
 ```bash
-python render_json_overlay.py \
+python code/data_augmentation/render_json_overlay.py \
   --image synthesis_arabic_data/chess2_test_filtered/images/train/sample_000001_أحدثتضجةعالميةمم.png \
   --json synthesis_arabic_data/chess2_test_filtered/json/train/sample_000001_أحدثتضجةعالميةمم.json \
   --output synthesis_arabic_data/chess2_test_filtered/overlays/sample_000001_split.png \
@@ -160,7 +160,7 @@ python render_json_overlay.py \
 Without `--split`, paths are drawn directly on top of the image:
 
 ```bash
-python render_json_overlay.py \
+python code/data_augmentation/render_json_overlay.py \
   --image path/to/image.png \
   --json path/to/strokes.json \
   --output outputs/overlays/sample_overlay.png \
@@ -177,7 +177,7 @@ right half: the reference/model image the writer was imitating
 Use `--region left-half --fit-coords` so the JSON is rendered only on the handwritten side:
 
 ```bash
-python render_json_overlay.py \
+python code/data_augmentation/render_json_overlay.py \
   --image 'sedrah_pipeline/sandbox_data/pix2pix/train/Shokot_شوقوط.jpg' \
   --json 'sedrah_pipeline/sandbox_data/json/train/شوقوط_0.json' \
   --output outputs/overlays/shokot_original_overlay.png \
@@ -189,7 +189,7 @@ python render_json_overlay.py \
 For a top/bottom comparison of only the handwritten side:
 
 ```bash
-python render_json_overlay.py \
+python code/data_augmentation/render_json_overlay.py \
   --image 'sedrah_pipeline/sandbox_data/pix2pix/train/Shokot_شوقوط.jpg' \
   --json 'sedrah_pipeline/sandbox_data/json/train/شوقوط_0.json' \
   --output outputs/overlays/shokot_left_half_split.png \
@@ -256,7 +256,7 @@ python render_json_overlay.py \
 Script:
 
 ```bash
-python train_sandbox.py
+python code/training/train_sandbox.py
 ```
 
 This trains a model to map:
@@ -273,7 +273,7 @@ It does not train image-based stroke detection yet.
 This checks local JSON data without loading the model:
 
 ```bash
-python train_sandbox.py \
+python code/training/train_sandbox.py \
   --dry-run \
   --max-train-samples 1 \
   --max-val-samples 1
@@ -282,7 +282,7 @@ python train_sandbox.py \
 ### Apple M4 Smoke Test
 
 ```bash
-python train_sandbox.py \
+python code/training/train_sandbox.py \
   --device mps \
   --max-train-samples 2 \
   --max-val-samples 2 \
@@ -296,7 +296,7 @@ python train_sandbox.py \
 ### Slightly Larger Local Test
 
 ```bash
-python train_sandbox.py \
+python code/training/train_sandbox.py \
   --device mps \
   --max-train-samples 8 \
   --max-val-samples 2 \
@@ -365,7 +365,7 @@ python train_sandbox.py \
 1. Generate synthetic data from a PDF:
 
 ```bash
-python synthesize_arabic_from_pdf.py \
+python code/data_augmentation/synthesize_arabic_from_pdf.py \
   --pdf chess2.pdf \
   --output-dir synthesis_arabic_data/chess2_test_filtered \
   --fix-rtl-order \
@@ -377,7 +377,7 @@ python synthesize_arabic_from_pdf.py \
 2. Visualize one generated synthetic JSON sample:
 
 ```bash
-python render_json_overlay.py \
+python code/data_augmentation/render_json_overlay.py \
   --json synthesis_arabic_data/chess2_test_filtered/json/train/sample_000001_أحدثتضجةعالميةمم.json \
   --output synthesis_arabic_data/chess2_test_filtered/overlays/sample_000001_json_only.png \
   --json-only
@@ -386,7 +386,7 @@ python render_json_overlay.py \
 3. Run a local model smoke test:
 
 ```bash
-python train_sandbox.py \
+python code/training/train_sandbox.py \
   --device mps \
   --max-train-samples 2 \
   --max-val-samples 2 \

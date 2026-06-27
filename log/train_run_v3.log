@@ -1,0 +1,216 @@
+The following values were not passed to `accelerate launch` and had defaults used instead:
+		More than one GPU was found, enabling multi-GPU training.
+		If this was unintended please pass in `--num_processes=1`.
+	`--num_machines` was set to a value of `1`
+	`--mixed_precision` was set to a value of `'no'`
+	`--dynamo_backend` was set to a value of `'no'`
+To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.
+Registered 2000 JSON stroke files for split [train] from sedrah_pipeline/calliar_dataset/json/train
+Registered 250 JSON stroke files for split [validation] from sedrah_pipeline/calliar_dataset/json/validation
+Using device=cuda:0 dtype=torch.bfloat16 num_processes=8
+MPS status: built=False available=False
+Registered 2000 JSON stroke files for split [train] from sedrah_pipeline/calliar_dataset/json/train
+Registered 250 JSON stroke files for split [validation] from sedrah_pipeline/calliar_dataset/json/validation
+Loading tokenizer/processor from Qwen/Qwen2-VL-2B-Instruct
+Registered 2000 JSON stroke files for split [train] from sedrah_pipeline/calliar_dataset/json/train
+Registered 250 JSON stroke files for split [validation] from sedrah_pipeline/calliar_dataset/json/validation
+Registered 2000 JSON stroke files for split [train] from sedrah_pipeline/calliar_dataset/json/train
+Registered 250 JSON stroke files for split [validation] from sedrah_pipeline/calliar_dataset/json/validation
+Registered 2000 JSON stroke files for split [train] from sedrah_pipeline/calliar_dataset/json/train
+Registered 2000 JSON stroke files for split [train] from sedrah_pipeline/calliar_dataset/json/train
+Registered 250 JSON stroke files for split [validation] from sedrah_pipeline/calliar_dataset/json/validation
+Registered 250 JSON stroke files for split [validation] from sedrah_pipeline/calliar_dataset/json/validation
+Registered 2000 JSON stroke files for split [train] from sedrah_pipeline/calliar_dataset/json/train
+Registered 250 JSON stroke files for split [validation] from sedrah_pipeline/calliar_dataset/json/validation
+Registered 2000 JSON stroke files for split [train] from sedrah_pipeline/calliar_dataset/json/train
+Registered 250 JSON stroke files for split [validation] from sedrah_pipeline/calliar_dataset/json/validation
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading model from Qwen/Qwen2-VL-2B-Instruct
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 43018.50it/s]
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 22369.62it/s]
+Loading weights:   0%|          | 0/729 [00:00<?, ?it/s]Loading weights: 100%|██████████| 729/729 [00:00<00:00, 8283.75it/s]
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 2561.41it/s]
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 48210.39it/s]
+Loading weights:   0%|          | 0/729 [00:00<?, ?it/s]Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 37786.52it/s]
+Loading weights: 100%|██████████| 729/729 [00:00<00:00, 7469.57it/s]
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 3314.35it/s]
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 38130.04it/s]
+Loading weights:   0%|          | 0/729 [00:00<?, ?it/s]Loading weights:   0%|          | 0/729 [00:00<?, ?it/s]Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 22550.02it/s]
+Loading weights:   0%|          | 0/729 [00:00<?, ?it/s]Loading weights: 100%|██████████| 729/729 [00:00<00:00, 7471.67it/s]
+Loading weights: 100%|██████████| 729/729 [00:00<00:00, 7496.79it/s]
+Loading weights:   0%|          | 0/729 [00:00<?, ?it/s]Loading weights: 100%|██████████| 729/729 [00:00<00:00, 7652.31it/s]
+Loading weights:   0%|          | 0/729 [00:00<?, ?it/s]Loading weights:   0%|          | 0/729 [00:00<?, ?it/s]Loading weights: 100%|██████████| 729/729 [00:00<00:00, 8190.55it/s]
+Loading weights: 100%|██████████| 729/729 [00:00<00:00, 7970.99it/s]
+Loading weights: 100%|██████████| 729/729 [00:00<00:00, 8211.96it/s]
+trainable params: 17,432,576 || all params: 2,226,418,176 || trainable%: 0.7830
+[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+epoch=1/5 step=1/250 loss=1.3097 samples_per_sec=8.66
+epoch=1/5 step=10/250 loss=1.3324 samples_per_sec=24.01
+epoch=1/5 step=20/250 loss=1.2599 samples_per_sec=24.05
+epoch=1/5 step=30/250 loss=1.2493 samples_per_sec=23.57
+epoch=1/5 step=40/250 loss=1.2834 samples_per_sec=21.30
+epoch=1/5 step=50/250 loss=1.1916 samples_per_sec=23.94
+epoch=1/5 step=60/250 loss=1.2042 samples_per_sec=24.90
+epoch=1/5 step=70/250 loss=1.2007 samples_per_sec=21.41
+epoch=1/5 step=80/250 loss=1.2284 samples_per_sec=23.92
+epoch=1/5 step=90/250 loss=1.1816 samples_per_sec=23.75
+epoch=1/5 step=100/250 loss=1.2645 samples_per_sec=21.30
+epoch=1/5 step=110/250 loss=1.2081 samples_per_sec=25.50
+epoch=1/5 step=120/250 loss=1.1559 samples_per_sec=23.61
+epoch=1/5 step=130/250 loss=1.1430 samples_per_sec=21.46
+epoch=1/5 step=140/250 loss=1.1643 samples_per_sec=24.56
+epoch=1/5 step=150/250 loss=1.2000 samples_per_sec=26.03
+epoch=1/5 step=160/250 loss=1.1427 samples_per_sec=22.48
+epoch=1/5 step=170/250 loss=1.1149 samples_per_sec=26.40
+epoch=1/5 step=180/250 loss=1.1519 samples_per_sec=23.55
+epoch=1/5 step=190/250 loss=1.1723 samples_per_sec=24.89
+epoch=1/5 step=200/250 loss=1.1255 samples_per_sec=25.08
+epoch=1/5 step=210/250 loss=1.1483 samples_per_sec=25.63
+epoch=1/5 step=220/250 loss=1.1395 samples_per_sec=22.92
+epoch=1/5 step=230/250 loss=1.1343 samples_per_sec=25.67
+epoch=1/5 step=240/250 loss=1.1149 samples_per_sec=24.15
+epoch=1/5 step=250/250 loss=1.1723 samples_per_sec=21.71
+epoch=1 complete train_loss=1.1874 val_loss=1.1366 epoch_time=85.19s
+epoch=2/5 step=1/250 loss=1.1260 samples_per_sec=20.59
+epoch=2/5 step=10/250 loss=1.2633 samples_per_sec=28.73
+epoch=2/5 step=20/250 loss=1.0591 samples_per_sec=25.08
+epoch=2/5 step=30/250 loss=1.0756 samples_per_sec=22.90
+epoch=2/5 step=40/250 loss=1.1904 samples_per_sec=24.74
+epoch=2/5 step=50/250 loss=1.1092 samples_per_sec=27.75
+epoch=2/5 step=60/250 loss=1.1516 samples_per_sec=22.72
+epoch=2/5 step=70/250 loss=1.1090 samples_per_sec=26.42
+epoch=2/5 step=80/250 loss=1.0823 samples_per_sec=25.69
+epoch=2/5 step=90/250 loss=1.1258 samples_per_sec=22.92
+epoch=2/5 step=100/250 loss=1.1420 samples_per_sec=25.32
+epoch=2/5 step=110/250 loss=1.1381 samples_per_sec=25.06
+epoch=2/5 step=120/250 loss=1.1289 samples_per_sec=23.15
+epoch=2/5 step=130/250 loss=1.3151 samples_per_sec=23.83
+epoch=2/5 step=140/250 loss=1.0805 samples_per_sec=24.85
+epoch=2/5 step=150/250 loss=1.1224 samples_per_sec=22.93
+epoch=2/5 step=160/250 loss=1.1044 samples_per_sec=25.37
+epoch=2/5 step=170/250 loss=1.1360 samples_per_sec=25.97
+epoch=2/5 step=180/250 loss=1.1677 samples_per_sec=22.30
+epoch=2/5 step=190/250 loss=1.1106 samples_per_sec=26.86
+epoch=2/5 step=200/250 loss=1.0930 samples_per_sec=24.62
+epoch=2/5 step=210/250 loss=1.0752 samples_per_sec=23.30
+epoch=2/5 step=220/250 loss=1.1514 samples_per_sec=25.97
+epoch=2/5 step=230/250 loss=1.1542 samples_per_sec=24.61
+epoch=2/5 step=240/250 loss=1.0945 samples_per_sec=23.74
+epoch=2/5 step=250/250 loss=1.1316 samples_per_sec=23.43
+epoch=2 complete train_loss=1.1206 val_loss=1.1056 epoch_time=81.60s
+epoch=3/5 step=1/250 loss=1.0875 samples_per_sec=23.48
+epoch=3/5 step=10/250 loss=1.0984 samples_per_sec=26.03
+epoch=3/5 step=20/250 loss=1.0093 samples_per_sec=24.78
+epoch=3/5 step=30/250 loss=1.0633 samples_per_sec=25.95
+epoch=3/5 step=40/250 loss=1.1177 samples_per_sec=25.39
+epoch=3/5 step=50/250 loss=1.1508 samples_per_sec=24.12
+epoch=3/5 step=60/250 loss=1.1288 samples_per_sec=26.29
+epoch=3/5 step=70/250 loss=1.0923 samples_per_sec=24.80
+epoch=3/5 step=80/250 loss=1.1028 samples_per_sec=24.74
+epoch=3/5 step=90/250 loss=1.1658 samples_per_sec=24.70
+epoch=3/5 step=100/250 loss=1.0827 samples_per_sec=24.83
+epoch=3/5 step=110/250 loss=1.0383 samples_per_sec=23.99
+epoch=3/5 step=120/250 loss=1.1318 samples_per_sec=26.72
+epoch=3/5 step=130/250 loss=1.1485 samples_per_sec=24.21
+epoch=3/5 step=140/250 loss=1.0787 samples_per_sec=23.00
+epoch=3/5 step=150/250 loss=1.1070 samples_per_sec=25.08
+epoch=3/5 step=160/250 loss=1.1209 samples_per_sec=23.57
+epoch=3/5 step=170/250 loss=1.0939 samples_per_sec=24.64
+epoch=3/5 step=180/250 loss=1.1263 samples_per_sec=24.41
+epoch=3/5 step=190/250 loss=1.1094 samples_per_sec=23.58
+epoch=3/5 step=200/250 loss=1.0713 samples_per_sec=24.79
+epoch=3/5 step=210/250 loss=1.0892 samples_per_sec=23.96
+epoch=3/5 step=220/250 loss=1.0351 samples_per_sec=23.97
+epoch=3/5 step=230/250 loss=1.0855 samples_per_sec=25.73
+epoch=3/5 step=240/250 loss=1.1149 samples_per_sec=24.88
+epoch=3/5 step=250/250 loss=1.0484 samples_per_sec=23.74
+epoch=3 complete train_loss=1.0964 val_loss=1.0929 epoch_time=81.37s
+epoch=4/5 step=1/250 loss=1.0790 samples_per_sec=27.34
+epoch=4/5 step=10/250 loss=1.0656 samples_per_sec=28.14
+epoch=4/5 step=20/250 loss=1.0898 samples_per_sec=25.01
+epoch=4/5 step=30/250 loss=1.1190 samples_per_sec=25.85
+epoch=4/5 step=40/250 loss=1.1170 samples_per_sec=24.57
+epoch=4/5 step=50/250 loss=1.0723 samples_per_sec=24.92
+epoch=4/5 step=60/250 loss=1.0785 samples_per_sec=26.03
+epoch=4/5 step=70/250 loss=1.1313 samples_per_sec=24.66
+epoch=4/5 step=80/250 loss=1.0837 samples_per_sec=23.05
+epoch=4/5 step=90/250 loss=1.0725 samples_per_sec=25.42
+epoch=4/5 step=100/250 loss=1.0906 samples_per_sec=23.99
+epoch=4/5 step=110/250 loss=1.1351 samples_per_sec=26.79
+epoch=4/5 step=120/250 loss=1.1662 samples_per_sec=25.19
+epoch=4/5 step=130/250 loss=1.0709 samples_per_sec=24.84
+epoch=4/5 step=140/250 loss=1.0622 samples_per_sec=25.99
+epoch=4/5 step=150/250 loss=1.1211 samples_per_sec=23.65
+epoch=4/5 step=160/250 loss=1.1175 samples_per_sec=24.76
+epoch=4/5 step=170/250 loss=1.0660 samples_per_sec=25.81
+epoch=4/5 step=180/250 loss=1.0932 samples_per_sec=23.79
+epoch=4/5 step=190/250 loss=1.0600 samples_per_sec=24.83
+epoch=4/5 step=200/250 loss=0.9970 samples_per_sec=26.14
+epoch=4/5 step=210/250 loss=1.1278 samples_per_sec=23.59
+epoch=4/5 step=220/250 loss=1.0693 samples_per_sec=24.26
+epoch=4/5 step=230/250 loss=1.1578 samples_per_sec=26.09
+epoch=4/5 step=240/250 loss=1.0194 samples_per_sec=24.41
+epoch=4/5 step=250/250 loss=1.0743 samples_per_sec=24.44
+epoch=4 complete train_loss=1.0817 val_loss=1.0819 epoch_time=80.29s
+epoch=5/5 step=1/250 loss=1.0171 samples_per_sec=27.43
+epoch=5/5 step=10/250 loss=1.0559 samples_per_sec=29.71
+epoch=5/5 step=20/250 loss=1.0533 samples_per_sec=24.94
+epoch=5/5 step=30/250 loss=1.1275 samples_per_sec=23.53
+epoch=5/5 step=40/250 loss=1.0672 samples_per_sec=27.40
+epoch=5/5 step=50/250 loss=1.1513 samples_per_sec=25.87
+epoch=5/5 step=60/250 loss=1.0364 samples_per_sec=24.21
+epoch=5/5 step=70/250 loss=1.0168 samples_per_sec=26.48
+epoch=5/5 step=80/250 loss=1.0945 samples_per_sec=23.87
+epoch=5/5 step=90/250 loss=1.0680 samples_per_sec=26.66
+epoch=5/5 step=100/250 loss=1.0965 samples_per_sec=26.34
+epoch=5/5 step=110/250 loss=1.0822 samples_per_sec=24.78
+epoch=5/5 step=120/250 loss=1.1189 samples_per_sec=26.08
+epoch=5/5 step=130/250 loss=1.0284 samples_per_sec=26.66
+epoch=5/5 step=140/250 loss=1.0699 samples_per_sec=23.75
+epoch=5/5 step=150/250 loss=1.1044 samples_per_sec=26.09
+epoch=5/5 step=160/250 loss=1.1098 samples_per_sec=27.00
+epoch=5/5 step=170/250 loss=1.0728 samples_per_sec=25.12
+epoch=5/5 step=180/250 loss=1.0469 samples_per_sec=25.23
+epoch=5/5 step=190/250 loss=1.0445 samples_per_sec=26.33
+epoch=5/5 step=200/250 loss=1.0321 samples_per_sec=25.94
+epoch=5/5 step=210/250 loss=1.0674 samples_per_sec=24.14
+epoch=5/5 step=220/250 loss=1.0855 samples_per_sec=24.52
+epoch=5/5 step=230/250 loss=1.0392 samples_per_sec=23.69
+epoch=5/5 step=240/250 loss=1.0175 samples_per_sec=26.36
+epoch=5/5 step=250/250 loss=1.0871 samples_per_sec=25.72
+epoch=5 complete train_loss=1.0721 val_loss=1.0774 epoch_time=78.59s
+Benchmark: {
+  "device": "cuda:0",
+  "compute_dtype": "torch.bfloat16",
+  "num_processes": 8,
+  "epochs": 5,
+  "train_samples": 2000,
+  "batch_size": 1,
+  "grad_accum_steps": 8,
+  "total_seconds": 414.97039034099726,
+  "epoch_seconds": [
+    85.19466827399447,
+    81.5960539949956,
+    81.3677371310041,
+    80.29160461200081,
+    78.5932997120035
+  ],
+  "avg_epoch_seconds": 81.4086727447997,
+  "samples_per_sec_avg": 24.09810490763597
+}
+Saved LoRA adapter and tokenizer to outputs/qwen2vl-sedrah-stroke-lora_v3
+[rank0]:[W626 08:59:29.352315646 ProcessGroupNCCL.cpp:1647] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())

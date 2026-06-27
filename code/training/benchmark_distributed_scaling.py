@@ -338,7 +338,10 @@ def build_arg_parser():
     parser.add_argument("--base-output-dir", type=Path, default=Path("outputs/distributed_scaling"))
     parser.add_argument("--workdir", default=str(Path.cwd()))
     parser.add_argument("--torchrun", default=default_torchrun())
-    parser.add_argument("--train-script", default="train_distributed.py")
+    parser.add_argument(
+        "--train-script",
+        default=str(Path(__file__).resolve().parent / "train_distributed.py"),
+    )
     parser.add_argument("--set-cuda-visible-devices", action="store_true", default=True)
     parser.add_argument("--continue-on-failure", action="store_true")
     parser.add_argument("--dry-run", action="store_true")

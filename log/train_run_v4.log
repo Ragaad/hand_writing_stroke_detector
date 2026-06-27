@@ -1,0 +1,356 @@
+The following values were not passed to `accelerate launch` and had defaults used instead:
+		More than one GPU was found, enabling multi-GPU training.
+		If this was unintended please pass in `--num_processes=1`.
+	`--num_machines` was set to a value of `1`
+	`--mixed_precision` was set to a value of `'no'`
+	`--dynamo_backend` was set to a value of `'no'`
+To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.
+Using device=cuda:0 dtype=torch.bfloat16 num_processes=8
+MPS status: built=False available=False
+Registered 2039 JSON stroke files for split [train] from sedrah_pipeline/merged_dataset/json/train
+Registered 250 JSON stroke files for split [validation] from sedrah_pipeline/merged_dataset/json/validation
+Registered 2039 JSON stroke files for split [train] from sedrah_pipeline/merged_dataset/json/train
+Registered 250 JSON stroke files for split [validation] from sedrah_pipeline/merged_dataset/json/validation
+Loading tokenizer/processor from Qwen/Qwen2-VL-2B-Instruct
+Registered 2039 JSON stroke files for split [train] from sedrah_pipeline/merged_dataset/json/train
+Registered 250 JSON stroke files for split [validation] from sedrah_pipeline/merged_dataset/json/validation
+Registered 2039 JSON stroke files for split [train] from sedrah_pipeline/merged_dataset/json/train
+Registered 250 JSON stroke files for split [validation] from sedrah_pipeline/merged_dataset/json/validation
+Registered 2039 JSON stroke files for split [train] from sedrah_pipeline/merged_dataset/json/train
+Registered 250 JSON stroke files for split [validation] from sedrah_pipeline/merged_dataset/json/validation
+Registered 2039 JSON stroke files for split [train] from sedrah_pipeline/merged_dataset/json/train
+Registered 2039 JSON stroke files for split [train] from sedrah_pipeline/merged_dataset/json/train
+Registered 250 JSON stroke files for split [validation] from sedrah_pipeline/merged_dataset/json/validation
+Registered 250 JSON stroke files for split [validation] from sedrah_pipeline/merged_dataset/json/validation
+Registered 2039 JSON stroke files for split [train] from sedrah_pipeline/merged_dataset/json/train
+Registered 250 JSON stroke files for split [validation] from sedrah_pipeline/merged_dataset/json/validation
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading model from Qwen/Qwen2-VL-2B-Instruct
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 43018.50it/s]
+Loading weights:   0%|          | 0/729 [00:00<?, ?it/s]Loading weights: 100%|██████████| 729/729 [00:00<00:00, 8650.13it/s]
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 10118.95it/s]
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 34952.53it/s]
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 10255.02it/s]
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 33689.19it/s]
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 2843.60it/s]
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 38836.15it/s]
+Loading weights:   0%|          | 0/729 [00:00<?, ?it/s]Loading weights:   0%|          | 0/729 [00:00<?, ?it/s]Loading weights:   0%|          | 0/729 [00:00<?, ?it/s]Loading weights:   0%|          | 0/729 [00:00<?, ?it/s]Loading weights:   0%|          | 0/729 [00:00<?, ?it/s]Loading weights: 100%|██████████| 729/729 [00:00<00:00, 7553.27it/s]
+Loading weights: 100%|██████████| 729/729 [00:00<00:00, 7949.23it/s]
+Loading weights:   0%|          | 0/729 [00:00<?, ?it/s]Loading weights: 100%|██████████| 729/729 [00:00<00:00, 7622.91it/s]
+Loading weights: 100%|██████████| 729/729 [00:00<00:00, 7633.97it/s]
+Loading weights:  89%|████████▉ | 649/729 [00:00<00:00, 6484.97it/s]Loading weights: 100%|██████████| 729/729 [00:00<00:00, 6471.49it/s]
+Loading weights: 100%|██████████| 729/729 [00:00<00:00, 7979.52it/s]
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 11155.06it/s]
+Loading weights:   0%|          | 0/729 [00:00<?, ?it/s]Loading weights: 100%|██████████| 729/729 [00:00<00:00, 8244.68it/s]
+trainable params: 17,432,576 || all params: 2,226,418,176 || trainable%: 0.7830
+[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+[transformers] `use_cache=True` is incompatible with gradient checkpointing. Setting `use_cache=False`.
+epoch=1/10 step=1/255 loss=1.3319 samples_per_sec=9.47
+epoch=1/10 step=10/255 loss=1.3132 samples_per_sec=23.56
+epoch=1/10 step=20/255 loss=1.2457 samples_per_sec=25.75
+epoch=1/10 step=30/255 loss=1.2301 samples_per_sec=24.09
+epoch=1/10 step=40/255 loss=1.2358 samples_per_sec=20.27
+epoch=1/10 step=50/255 loss=1.2439 samples_per_sec=24.18
+epoch=1/10 step=60/255 loss=1.1863 samples_per_sec=25.39
+epoch=1/10 step=70/255 loss=1.2056 samples_per_sec=20.98
+epoch=1/10 step=80/255 loss=1.1860 samples_per_sec=23.95
+epoch=1/10 step=90/255 loss=1.2109 samples_per_sec=24.98
+epoch=1/10 step=100/255 loss=1.1915 samples_per_sec=23.02
+epoch=1/10 step=110/255 loss=1.1532 samples_per_sec=27.74
+epoch=1/10 step=120/255 loss=1.1881 samples_per_sec=23.07
+epoch=1/10 step=130/255 loss=1.1654 samples_per_sec=21.77
+epoch=1/10 step=140/255 loss=1.2244 samples_per_sec=24.73
+epoch=1/10 step=150/255 loss=1.1723 samples_per_sec=25.77
+epoch=1/10 step=160/255 loss=1.2127 samples_per_sec=22.03
+epoch=1/10 step=170/255 loss=1.1381 samples_per_sec=23.72
+epoch=1/10 step=180/255 loss=1.2712 samples_per_sec=23.16
+epoch=1/10 step=190/255 loss=1.1640 samples_per_sec=22.87
+epoch=1/10 step=200/255 loss=1.1767 samples_per_sec=25.44
+epoch=1/10 step=210/255 loss=1.0864 samples_per_sec=23.78
+epoch=1/10 step=220/255 loss=1.1230 samples_per_sec=23.58
+epoch=1/10 step=230/255 loss=1.1201 samples_per_sec=23.79
+epoch=1/10 step=240/255 loss=1.1010 samples_per_sec=23.35
+epoch=1/10 step=250/255 loss=1.1296 samples_per_sec=24.97
+epoch=1 complete train_loss=1.1871 val_loss=1.1345 epoch_time=86.82s
+epoch=2/10 step=1/255 loss=1.1693 samples_per_sec=27.90
+epoch=2/10 step=10/255 loss=1.1231 samples_per_sec=26.28
+epoch=2/10 step=20/255 loss=1.1461 samples_per_sec=24.69
+epoch=2/10 step=30/255 loss=1.1699 samples_per_sec=25.67
+epoch=2/10 step=40/255 loss=1.1888 samples_per_sec=24.08
+epoch=2/10 step=50/255 loss=1.0812 samples_per_sec=23.93
+epoch=2/10 step=60/255 loss=1.1670 samples_per_sec=25.62
+epoch=2/10 step=70/255 loss=1.0365 samples_per_sec=23.15
+epoch=2/10 step=80/255 loss=1.1191 samples_per_sec=25.00
+epoch=2/10 step=90/255 loss=1.1220 samples_per_sec=26.30
+epoch=2/10 step=100/255 loss=1.0734 samples_per_sec=21.91
+epoch=2/10 step=110/255 loss=1.1071 samples_per_sec=26.28
+epoch=2/10 step=120/255 loss=1.0879 samples_per_sec=24.89
+epoch=2/10 step=130/255 loss=1.1129 samples_per_sec=22.38
+epoch=2/10 step=140/255 loss=1.1276 samples_per_sec=24.96
+epoch=2/10 step=150/255 loss=1.1386 samples_per_sec=23.44
+epoch=2/10 step=160/255 loss=1.0432 samples_per_sec=22.84
+epoch=2/10 step=170/255 loss=1.0875 samples_per_sec=25.15
+epoch=2/10 step=180/255 loss=1.0932 samples_per_sec=24.64
+epoch=2/10 step=190/255 loss=1.0997 samples_per_sec=23.78
+epoch=2/10 step=200/255 loss=1.1474 samples_per_sec=25.34
+epoch=2/10 step=210/255 loss=1.1197 samples_per_sec=23.83
+epoch=2/10 step=220/255 loss=1.1410 samples_per_sec=22.81
+epoch=2/10 step=230/255 loss=1.1377 samples_per_sec=27.10
+epoch=2/10 step=240/255 loss=1.1564 samples_per_sec=23.72
+epoch=2/10 step=250/255 loss=1.1285 samples_per_sec=24.47
+epoch=2 complete train_loss=1.1196 val_loss=1.1027 epoch_time=83.78s
+epoch=3/10 step=1/255 loss=1.0458 samples_per_sec=26.34
+epoch=3/10 step=10/255 loss=1.0851 samples_per_sec=27.43
+epoch=3/10 step=20/255 loss=1.1141 samples_per_sec=25.32
+epoch=3/10 step=30/255 loss=1.1223 samples_per_sec=23.71
+epoch=3/10 step=40/255 loss=1.0569 samples_per_sec=25.52
+epoch=3/10 step=50/255 loss=1.1121 samples_per_sec=24.50
+epoch=3/10 step=60/255 loss=1.0224 samples_per_sec=24.55
+epoch=3/10 step=70/255 loss=1.1270 samples_per_sec=25.59
+epoch=3/10 step=80/255 loss=1.0817 samples_per_sec=25.29
+epoch=3/10 step=90/255 loss=1.0957 samples_per_sec=25.50
+epoch=3/10 step=100/255 loss=1.0652 samples_per_sec=26.69
+epoch=3/10 step=110/255 loss=1.1081 samples_per_sec=23.65
+epoch=3/10 step=120/255 loss=1.1159 samples_per_sec=26.08
+epoch=3/10 step=130/255 loss=1.0190 samples_per_sec=25.30
+epoch=3/10 step=140/255 loss=1.1246 samples_per_sec=26.64
+epoch=3/10 step=150/255 loss=1.1393 samples_per_sec=26.28
+epoch=3/10 step=160/255 loss=1.1279 samples_per_sec=24.76
+epoch=3/10 step=170/255 loss=1.0600 samples_per_sec=23.85
+epoch=3/10 step=180/255 loss=1.1356 samples_per_sec=25.47
+epoch=3/10 step=190/255 loss=1.0898 samples_per_sec=23.15
+epoch=3/10 step=200/255 loss=1.0401 samples_per_sec=23.77
+epoch=3/10 step=210/255 loss=1.1008 samples_per_sec=25.77
+epoch=3/10 step=220/255 loss=1.0347 samples_per_sec=23.91
+epoch=3/10 step=230/255 loss=1.0969 samples_per_sec=25.35
+epoch=3/10 step=240/255 loss=1.0819 samples_per_sec=25.55
+epoch=3/10 step=250/255 loss=1.0501 samples_per_sec=23.85
+epoch=3 complete train_loss=1.0941 val_loss=1.0872 epoch_time=81.59s
+epoch=4/10 step=1/255 loss=1.1188 samples_per_sec=27.84
+epoch=4/10 step=10/255 loss=1.1125 samples_per_sec=26.65
+epoch=4/10 step=20/255 loss=1.0362 samples_per_sec=24.89
+epoch=4/10 step=30/255 loss=1.0992 samples_per_sec=25.61
+epoch=4/10 step=40/255 loss=1.0607 samples_per_sec=24.93
+epoch=4/10 step=50/255 loss=1.0789 samples_per_sec=26.35
+epoch=4/10 step=60/255 loss=1.0898 samples_per_sec=26.58
+epoch=4/10 step=70/255 loss=1.0930 samples_per_sec=24.68
+epoch=4/10 step=80/255 loss=1.1410 samples_per_sec=23.40
+epoch=4/10 step=90/255 loss=1.0779 samples_per_sec=25.72
+epoch=4/10 step=100/255 loss=1.1465 samples_per_sec=24.67
+epoch=4/10 step=110/255 loss=1.0676 samples_per_sec=26.59
+epoch=4/10 step=120/255 loss=1.0026 samples_per_sec=22.68
+epoch=4/10 step=130/255 loss=1.1024 samples_per_sec=26.75
+epoch=4/10 step=140/255 loss=1.1407 samples_per_sec=25.52
+epoch=4/10 step=150/255 loss=0.9769 samples_per_sec=26.04
+epoch=4/10 step=160/255 loss=1.1126 samples_per_sec=27.21
+epoch=4/10 step=170/255 loss=1.0424 samples_per_sec=26.90
+epoch=4/10 step=180/255 loss=1.1352 samples_per_sec=25.65
+epoch=4/10 step=190/255 loss=1.1461 samples_per_sec=25.78
+epoch=4/10 step=200/255 loss=1.1008 samples_per_sec=25.95
+epoch=4/10 step=210/255 loss=1.0854 samples_per_sec=24.62
+epoch=4/10 step=220/255 loss=1.0537 samples_per_sec=25.96
+epoch=4/10 step=230/255 loss=1.1142 samples_per_sec=26.75
+epoch=4/10 step=240/255 loss=1.0543 samples_per_sec=24.91
+epoch=4/10 step=250/255 loss=1.1323 samples_per_sec=25.83
+epoch=4 complete train_loss=1.0801 val_loss=1.0782 epoch_time=80.17s
+epoch=5/10 step=1/255 loss=1.0926 samples_per_sec=27.92
+epoch=5/10 step=10/255 loss=1.0178 samples_per_sec=30.16
+epoch=5/10 step=20/255 loss=1.1074 samples_per_sec=24.30
+epoch=5/10 step=30/255 loss=0.9708 samples_per_sec=24.50
+epoch=5/10 step=40/255 loss=1.0809 samples_per_sec=23.24
+epoch=5/10 step=50/255 loss=1.0083 samples_per_sec=25.31
+epoch=5/10 step=60/255 loss=1.1021 samples_per_sec=25.69
+epoch=5/10 step=70/255 loss=1.0482 samples_per_sec=25.73
+epoch=5/10 step=80/255 loss=1.0106 samples_per_sec=26.05
+epoch=5/10 step=90/255 loss=1.0526 samples_per_sec=26.78
+epoch=5/10 step=100/255 loss=1.0715 samples_per_sec=25.81
+epoch=5/10 step=110/255 loss=1.0558 samples_per_sec=25.28
+epoch=5/10 step=120/255 loss=1.0279 samples_per_sec=23.99
+epoch=5/10 step=130/255 loss=1.1097 samples_per_sec=24.76
+epoch=5/10 step=140/255 loss=1.1689 samples_per_sec=27.42
+epoch=5/10 step=150/255 loss=1.1262 samples_per_sec=25.83
+epoch=5/10 step=160/255 loss=1.1532 samples_per_sec=26.71
+epoch=5/10 step=170/255 loss=1.0423 samples_per_sec=24.49
+epoch=5/10 step=180/255 loss=1.0896 samples_per_sec=25.54
+epoch=5/10 step=190/255 loss=1.1540 samples_per_sec=27.29
+epoch=5/10 step=200/255 loss=1.0828 samples_per_sec=27.14
+epoch=5/10 step=210/255 loss=1.0961 samples_per_sec=26.05
+epoch=5/10 step=220/255 loss=1.0492 samples_per_sec=24.07
+epoch=5/10 step=230/255 loss=1.1412 samples_per_sec=26.68
+epoch=5/10 step=240/255 loss=0.9937 samples_per_sec=25.25
+epoch=5/10 step=250/255 loss=1.0452 samples_per_sec=25.69
+epoch=5 complete train_loss=1.0708 val_loss=1.0724 epoch_time=79.74s
+epoch=6/10 step=1/255 loss=1.0263 samples_per_sec=26.19
+epoch=6/10 step=10/255 loss=1.1558 samples_per_sec=27.98
+epoch=6/10 step=20/255 loss=1.0825 samples_per_sec=24.81
+epoch=6/10 step=30/255 loss=1.1169 samples_per_sec=23.96
+epoch=6/10 step=40/255 loss=0.9775 samples_per_sec=28.04
+epoch=6/10 step=50/255 loss=1.1182 samples_per_sec=27.28
+epoch=6/10 step=60/255 loss=1.1037 samples_per_sec=24.08
+epoch=6/10 step=70/255 loss=1.0022 samples_per_sec=26.89
+epoch=6/10 step=80/255 loss=1.0266 samples_per_sec=24.22
+epoch=6/10 step=90/255 loss=1.0351 samples_per_sec=25.22
+epoch=6/10 step=100/255 loss=1.0591 samples_per_sec=25.64
+epoch=6/10 step=110/255 loss=1.0706 samples_per_sec=25.10
+epoch=6/10 step=120/255 loss=1.1250 samples_per_sec=25.88
+epoch=6/10 step=130/255 loss=0.9968 samples_per_sec=26.37
+epoch=6/10 step=140/255 loss=1.0146 samples_per_sec=26.74
+epoch=6/10 step=150/255 loss=1.0655 samples_per_sec=24.49
+epoch=6/10 step=160/255 loss=1.1051 samples_per_sec=27.59
+epoch=6/10 step=170/255 loss=1.0605 samples_per_sec=26.66
+epoch=6/10 step=180/255 loss=1.0442 samples_per_sec=26.04
+epoch=6/10 step=190/255 loss=1.0948 samples_per_sec=25.68
+epoch=6/10 step=200/255 loss=1.0911 samples_per_sec=26.93
+epoch=6/10 step=210/255 loss=1.0258 samples_per_sec=23.39
+epoch=6/10 step=220/255 loss=1.0421 samples_per_sec=27.27
+epoch=6/10 step=230/255 loss=1.0711 samples_per_sec=25.00
+epoch=6/10 step=240/255 loss=1.0626 samples_per_sec=25.61
+epoch=6/10 step=250/255 loss=1.1331 samples_per_sec=26.08
+epoch=6 complete train_loss=1.0635 val_loss=1.0682 epoch_time=79.47s
+epoch=7/10 step=1/255 loss=1.0140 samples_per_sec=28.46
+epoch=7/10 step=10/255 loss=1.1425 samples_per_sec=31.26
+epoch=7/10 step=20/255 loss=1.0677 samples_per_sec=27.23
+epoch=7/10 step=30/255 loss=1.0487 samples_per_sec=25.65
+epoch=7/10 step=40/255 loss=1.0503 samples_per_sec=29.44
+epoch=7/10 step=50/255 loss=1.0795 samples_per_sec=28.32
+epoch=7/10 step=60/255 loss=1.0975 samples_per_sec=25.51
+epoch=7/10 step=70/255 loss=1.0442 samples_per_sec=27.28
+epoch=7/10 step=80/255 loss=1.0592 samples_per_sec=26.44
+epoch=7/10 step=90/255 loss=1.0569 samples_per_sec=27.00
+epoch=7/10 step=100/255 loss=0.9845 samples_per_sec=28.22
+epoch=7/10 step=110/255 loss=1.0025 samples_per_sec=26.92
+epoch=7/10 step=120/255 loss=1.0447 samples_per_sec=25.67
+epoch=7/10 step=130/255 loss=0.9866 samples_per_sec=28.01
+epoch=7/10 step=140/255 loss=1.0942 samples_per_sec=26.26
+epoch=7/10 step=150/255 loss=1.0971 samples_per_sec=23.96
+epoch=7/10 step=160/255 loss=1.1229 samples_per_sec=25.71
+epoch=7/10 step=170/255 loss=1.1009 samples_per_sec=25.18
+epoch=7/10 step=180/255 loss=1.0558 samples_per_sec=25.74
+epoch=7/10 step=190/255 loss=1.0144 samples_per_sec=26.03
+epoch=7/10 step=200/255 loss=1.0192 samples_per_sec=26.12
+epoch=7/10 step=210/255 loss=1.0841 samples_per_sec=24.14
+epoch=7/10 step=220/255 loss=1.0283 samples_per_sec=26.96
+epoch=7/10 step=230/255 loss=1.0819 samples_per_sec=23.81
+epoch=7/10 step=240/255 loss=1.0280 samples_per_sec=26.63
+epoch=7/10 step=250/255 loss=1.0422 samples_per_sec=26.77
+epoch=7 complete train_loss=1.0573 val_loss=1.0641 epoch_time=77.40s
+epoch=8/10 step=1/255 loss=1.0346 samples_per_sec=23.19
+epoch=8/10 step=10/255 loss=1.0490 samples_per_sec=30.40
+epoch=8/10 step=20/255 loss=1.0537 samples_per_sec=26.45
+epoch=8/10 step=30/255 loss=1.1271 samples_per_sec=27.16
+epoch=8/10 step=40/255 loss=1.0190 samples_per_sec=26.54
+epoch=8/10 step=50/255 loss=1.0208 samples_per_sec=26.41
+epoch=8/10 step=60/255 loss=1.0543 samples_per_sec=26.49
+epoch=8/10 step=70/255 loss=1.0044 samples_per_sec=26.76
+epoch=8/10 step=80/255 loss=0.9964 samples_per_sec=26.36
+epoch=8/10 step=90/255 loss=1.0272 samples_per_sec=26.46
+epoch=8/10 step=100/255 loss=1.0015 samples_per_sec=27.74
+epoch=8/10 step=110/255 loss=1.0464 samples_per_sec=23.37
+epoch=8/10 step=120/255 loss=1.0496 samples_per_sec=26.80
+epoch=8/10 step=130/255 loss=1.1001 samples_per_sec=27.29
+epoch=8/10 step=140/255 loss=1.0806 samples_per_sec=25.55
+epoch=8/10 step=150/255 loss=1.0779 samples_per_sec=26.05
+epoch=8/10 step=160/255 loss=1.0226 samples_per_sec=23.88
+epoch=8/10 step=170/255 loss=1.0220 samples_per_sec=25.96
+epoch=8/10 step=180/255 loss=1.0658 samples_per_sec=27.58
+epoch=8/10 step=190/255 loss=1.0283 samples_per_sec=26.23
+epoch=8/10 step=200/255 loss=1.1174 samples_per_sec=29.36
+epoch=8/10 step=210/255 loss=1.0184 samples_per_sec=27.36
+epoch=8/10 step=220/255 loss=1.0918 samples_per_sec=29.26
+epoch=8/10 step=230/255 loss=1.0717 samples_per_sec=24.47
+epoch=8/10 step=240/255 loss=0.9400 samples_per_sec=26.85
+epoch=8/10 step=250/255 loss=1.1589 samples_per_sec=26.25
+epoch=8 complete train_loss=1.0520 val_loss=1.0613 epoch_time=77.09s
+epoch=9/10 step=1/255 loss=1.0852 samples_per_sec=29.73
+epoch=9/10 step=10/255 loss=0.9406 samples_per_sec=29.73
+epoch=9/10 step=20/255 loss=1.0539 samples_per_sec=27.68
+epoch=9/10 step=30/255 loss=1.0084 samples_per_sec=25.44
+epoch=9/10 step=40/255 loss=1.0192 samples_per_sec=27.83
+epoch=9/10 step=50/255 loss=1.0612 samples_per_sec=28.39
+epoch=9/10 step=60/255 loss=1.0945 samples_per_sec=25.24
+epoch=9/10 step=70/255 loss=1.0329 samples_per_sec=27.20
+epoch=9/10 step=80/255 loss=1.0442 samples_per_sec=28.15
+epoch=9/10 step=90/255 loss=0.9952 samples_per_sec=26.91
+epoch=9/10 step=100/255 loss=1.0015 samples_per_sec=27.95
+epoch=9/10 step=110/255 loss=0.9916 samples_per_sec=27.56
+epoch=9/10 step=120/255 loss=1.0357 samples_per_sec=27.81
+epoch=9/10 step=130/255 loss=1.0803 samples_per_sec=26.30
+epoch=9/10 step=140/255 loss=1.1430 samples_per_sec=26.58
+epoch=9/10 step=150/255 loss=1.0564 samples_per_sec=30.51
+epoch=9/10 step=160/255 loss=1.0625 samples_per_sec=25.63
+epoch=9/10 step=170/255 loss=1.0578 samples_per_sec=27.61
+epoch=9/10 step=180/255 loss=1.0653 samples_per_sec=27.27
+epoch=9/10 step=190/255 loss=1.0605 samples_per_sec=28.24
+epoch=9/10 step=200/255 loss=1.0351 samples_per_sec=25.09
+epoch=9/10 step=210/255 loss=1.0450 samples_per_sec=27.00
+epoch=9/10 step=220/255 loss=1.0098 samples_per_sec=28.18
+epoch=9/10 step=230/255 loss=0.9834 samples_per_sec=28.47
+epoch=9/10 step=240/255 loss=1.0919 samples_per_sec=26.89
+epoch=9/10 step=250/255 loss=1.0259 samples_per_sec=28.26
+epoch=9 complete train_loss=1.0469 val_loss=1.0617 epoch_time=74.72s
+epoch=10/10 step=1/255 loss=1.0690 samples_per_sec=26.10
+epoch=10/10 step=10/255 loss=1.0054 samples_per_sec=31.78
+epoch=10/10 step=20/255 loss=0.9927 samples_per_sec=27.08
+epoch=10/10 step=30/255 loss=1.0436 samples_per_sec=28.70
+epoch=10/10 step=40/255 loss=1.0254 samples_per_sec=27.07
+epoch=10/10 step=50/255 loss=1.0015 samples_per_sec=25.75
+epoch=10/10 step=60/255 loss=1.0317 samples_per_sec=28.77
+epoch=10/10 step=70/255 loss=1.0704 samples_per_sec=27.20
+epoch=10/10 step=80/255 loss=1.0248 samples_per_sec=28.50
+epoch=10/10 step=90/255 loss=1.1962 samples_per_sec=25.54
+epoch=10/10 step=100/255 loss=1.1236 samples_per_sec=28.49
+epoch=10/10 step=110/255 loss=0.9954 samples_per_sec=25.04
+epoch=10/10 step=120/255 loss=1.0057 samples_per_sec=26.93
+epoch=10/10 step=130/255 loss=1.0351 samples_per_sec=28.88
+epoch=10/10 step=140/255 loss=1.1518 samples_per_sec=26.81
+epoch=10/10 step=150/255 loss=0.9792 samples_per_sec=26.98
+epoch=10/10 step=160/255 loss=1.0197 samples_per_sec=29.01
+epoch=10/10 step=170/255 loss=1.0574 samples_per_sec=28.05
+epoch=10/10 step=180/255 loss=1.0284 samples_per_sec=28.13
+epoch=10/10 step=190/255 loss=0.9909 samples_per_sec=27.49
+epoch=10/10 step=200/255 loss=1.0662 samples_per_sec=24.56
+epoch=10/10 step=210/255 loss=1.0552 samples_per_sec=29.18
+epoch=10/10 step=220/255 loss=1.0629 samples_per_sec=27.37
+epoch=10/10 step=230/255 loss=1.0492 samples_per_sec=30.85
+epoch=10/10 step=240/255 loss=1.0207 samples_per_sec=27.78
+epoch=10/10 step=250/255 loss=1.0676 samples_per_sec=27.05
+epoch=10 complete train_loss=1.0428 val_loss=1.0601 epoch_time=73.99s
+Benchmark: {
+  "device": "cuda:0",
+  "compute_dtype": "torch.bfloat16",
+  "num_processes": 8,
+  "epochs": 10,
+  "train_samples": 2039,
+  "batch_size": 1,
+  "grad_accum_steps": 8,
+  "total_seconds": 809.9101582469957,
+  "epoch_seconds": [
+    86.81517440299649,
+    83.77852953299589,
+    81.58877077200304,
+    80.16837313100405,
+    79.7366195450013,
+    79.4704166839947,
+    77.39650062500004,
+    77.08816152800136,
+    74.71996671600209,
+    73.99291705199721
+  ],
+  "avg_epoch_seconds": 79.47554299889961,
+  "samples_per_sec_avg": 25.187978928619238
+}
+Saved LoRA adapter and tokenizer to outputs/qwen2vl-sedrah-stroke-lora_v4
+[rank0]:[W626 09:16:06.948845034 ProcessGroupNCCL.cpp:1647] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())

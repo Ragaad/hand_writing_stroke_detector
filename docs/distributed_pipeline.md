@@ -4,8 +4,8 @@ This document describes the single-node distributed training pipeline for the Se
 
 ## Components
 
-- `train_distributed.py`: DDP training entrypoint with LoRA, checkpoint/resume, rank-0 logging, distributed validation, and final benchmark export.
-- `benchmark_distributed_scaling.py`: gradual scaling launcher for 1, 2, 4, and 8 GPU runs. It stores benchmark results in SQLite.
+- `code/training/train_distributed.py`: DDP training entrypoint with LoRA, checkpoint/resume, rank-0 logging, distributed validation, and final benchmark export.
+- `code/training/benchmark_distributed_scaling.py`: gradual scaling launcher for 1, 2, 4, and 8 GPU runs. It stores benchmark results in SQLite.
 - `run_scaling_benchmark_background.sh`: background launcher for the scaling benchmark.
 
 ## Effective Batch Size
@@ -38,7 +38,7 @@ Run a tiny one-GPU test before a full benchmark:
 ```bash
 .venv/bin/torchrun --nnodes=1 --nproc-per-node=1 \
   --master-addr=127.0.0.1 --master-port=29500 \
-  train_distributed.py \
+  code/training/train_distributed.py \
   --epochs 1 \
   --max-train-samples 8 \
   --max-val-samples 4 \
@@ -53,7 +53,7 @@ Run a tiny one-GPU test before a full benchmark:
 Foreground:
 
 ```bash
-.venv/bin/python benchmark_distributed_scaling.py \
+.venv/bin/python code/training/benchmark_distributed_scaling.py \
   --gpu-counts 1,2,4,8 \
   --target-effective-batch 8 \
   --epochs 1 \
@@ -95,7 +95,7 @@ Each distributed run saves epoch checkpoints under the configured checkpoint dir
 ```bash
 .venv/bin/torchrun --nnodes=1 --nproc-per-node=8 \
   --master-addr=127.0.0.1 --master-port=29508 \
-  train_distributed.py \
+  code/training/train_distributed.py \
   --resume-from-checkpoint outputs/distributed_scaling/sedrah-ddp-scale-v1/gpus_8/checkpoints/epoch-0001 \
   --epochs 10 \
   --batch-size 1 \

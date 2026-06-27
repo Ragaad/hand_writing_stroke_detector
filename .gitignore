@@ -1,0 +1,21 @@
+.venv/
+.env
+__pycache__/
+*.pyc
+.DS_Store
+.ipynb_checkpoints/
+
+# Datasets (large, regenerable, or third-party)
+Calliar/
+HMBD-v1/
+old_sedrah_pipeline/
+sedrah_pipeline/
+synthesis_arabic_data/
+
+# Model checkpoints / generated outputs
+outputs/
+inference-results/
+
+# Active/ad-hoc training logs at repo root (completed runs live in log/)
+/train_run_*.log
+/train_run_*.pid

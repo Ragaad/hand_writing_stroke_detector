@@ -1,0 +1,11 @@
+python code/training/train_sandbox.py \
+  --device mps \
+  --max-train-samples 4 \
+  --max-val-samples 1 \
+  --epochs 1 \
+  --batch-size 1 \
+  --grad-accum-steps 2 \
+  --max-length 2048 \
+  --output-dir outputs/local-m4-fast-test
+
+  
