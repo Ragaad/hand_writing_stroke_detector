@@ -1,4 +1,5 @@
 # Sedrah — Arabic Handwriting Stroke Generation
+Work in porogress
 
 This repo fine-tunes a vision-language model to generate Arabic (and experimentally
 Farsi) handwriting as a sequence of pen strokes, rather than just rendering text in a
