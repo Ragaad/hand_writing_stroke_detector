@@ -7,3 +7,5 @@ Pillow>=10.0.0
 sentencepiece>=0.2.0
 qwen-vl-utils>=0.0.8
 pypdf>=4.0.0
+scipy>=1.13.0
+fastdtw>=0.3.4
