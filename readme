@@ -1,3 +1,91 @@
+# Sedrah — Arabic Handwriting Stroke Generation
+
+This repo fine-tunes a vision-language model to generate Arabic (and experimentally
+Farsi) handwriting as a sequence of pen strokes, rather than just rendering text in a
+font. Given a piece of text, the model outputs JSON describing each stroke's pen
+trajectory (a list of `[x, y]` points per stroke), which can be rendered or replayed
+as if a person were writing it.
+
+See `PIPELINES.md` for detailed per-script usage and `pipeline.md` for a running log
+of the exact commands used for each training run.
+
+## Model
+
+Base model: **`Qwen/Qwen2-VL-2B-Instruct`** (2.2B params), fine-tuned with **LoRA**
+(via PEFT) on top of the frozen base — only the attention projections
+(`q_proj`, `k_proj`, `v_proj`, `o_proj`) are adapted. Training code lives in
+`code/training/train_sandbox.py` (single/multi-GPU via Accelerate) and
+`code/training/train_distributed.py`.
+
+Two input modes are supported:
+- **Text-only**: `text -> stroke JSON`.
+- **Multimodal (image + text)**: an image of the stroke trace is fed through
+  Qwen2-VL's vision encoder alongside the text prompt, giving the model a visual
+  reference for the target shape instead of generating blind. Wired in via
+  `--image-manifest` in `train_sandbox.py`.
+
+## Data
+
+### Calliar (primary Arabic dataset)
+[Calliar](https://github.com/ARBML/Calliar) is an academic online-handwriting
+dataset of Arabic calligraphy: 2,500 sentence-level samples (2,000 train / 250
+validation / 250 test). Each sample is a JSON list of strokes, one entry per
+character/diacritic component, e.g. `{"ب": [[x,y], [x,y], ...]}`.
+Lives at `sedrah_pipeline/calliar_dataset/json/`.
+
+- `sedrah_pipeline/calliar_dataset/imgs/` — rendered images of each sample's actual
+  stroke trace, used as the visual input for multimodal training.
+- `sedrah_pipeline/calliar_dataset/pix2pix/` — two-panel reference images (writer's
+  trace + a stylized calligraphy rendering); only the trace panel is used, to avoid
+  teaching the model a misleading "should look like ornate font art" prior.
+
+### Real Sedrah handwriting samples
+`old_sedrah_pipeline/sandbox_data` contains 170 real handwriting samples in the same
+JSON format. 131 of these turned out to be exact duplicates already present in
+Calliar; the 39 unique ones were merged into the combined training set.
+
+### POH-Db (Farsi, experimental)
+[POH-Db](https://github.com/SLTLabAUT/POH-Db) — Persian Online Handwriting Database
+(7,660 train / 782 validation / 864 test). Used for a from-base-model warm-up run
+(`v5-farsi`) to test the pipeline on a second language before returning to Arabic.
+Unlike Calliar, POH-Db has no per-character segmentation — every stroke in a sample
+shares one label (the full line of text).
+Lives at `sedrah_pipeline/poh_db_dataset/json/`.
+
+### IAM-OnDB (English, prepared but not run)
+A converter (`code/data_augmentation/convert_iam_ondb.py`) was written for the IAM
+On-Line Handwriting Database (English), targeting the same JSON schema. The dataset
+itself requires registration on the IAM website and was never actually downloaded
+into this environment, so no English training run has happened yet.
+
+## Augmented data
+
+`code/data_augmentation/augment_calliar_trajectories.py` expands the Calliar set 5x
+(2,500 -> 12,500 samples) by applying random geometric perturbations to each
+sample's stroke coordinates:
+
+- **Transforms**: scaling (±15%), rotation (±5°), shear (±0.2), Gaussian noise
+  (std 0.8), and time-shift (when timing data is present).
+- **0–3 transforms are stacked per copy**, chosen uniformly at random — about 25% of
+  augmented copies are left clean (0 transforms, near-identical to the source) and
+  the rest get a mix of distortions, so the model sees both faithful and noisy
+  variants rather than uniformly-corrupted data.
+- A manifest (`augmentation_manifest.jsonl`) records the exact transform(s) and
+  parameters applied to every generated file, for traceability back to its source.
+
+Because the augmented copies have transformed coordinates, the *original* stroke-trace
+photos no longer match their shape. `code/data_augmentation/render_augmented_images.py`
+re-renders a fresh image for every augmented sample directly from its (already
+transformed) JSON, so multimodal training has an accurate image for both the original
+and augmented data — current combined coverage is ~99.9% (14,982 / 15,000 samples).
+
+The combined training set (`sedrah_pipeline/calliar_combined_dataset/`) merges the
+original Calliar split with the full augmented set: **12,000 train / 1,500
+validation / 1,500 test**.
+
+## Example: local smoke test
+
+```bash
 python code/training/train_sandbox.py \
   --device mps \
   --max-train-samples 4 \
@@ -7,5 +95,4 @@ python code/training/train_sandbox.py \
   --grad-accum-steps 2 \
   --max-length 2048 \
   --output-dir outputs/local-m4-fast-test
-
-  
+```
