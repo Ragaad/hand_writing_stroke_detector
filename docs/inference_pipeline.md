@@ -12,6 +12,11 @@ predicted strokes against ground truth.
 - `code/training/trajectory_eval.py`: compares a predicted stroke trajectory against
   a ground-truth one (DTW distance, precision, recall) and logs results to a CSV for
   tracking quality over time as augmentation/training parameters change.
+- `code/training/benchmark_adapter.py`: end-to-end benchmark for a trained adapter —
+  samples ground-truth files from a split, generates a prediction for each (with its
+  paired image when one exists), scores every prediction via `trajectory_eval`,
+  logs an aggregated summary row + per-sample rows to CSV, and plots metric history
+  across every adapter benchmarked so far.
 
 ## Running Inference
 
@@ -63,6 +68,55 @@ these.
 `--canvas-size` (default `600`, square), `--no-fit-coords` (render raw model
 coordinates instead of auto-scaling to fit the canvas), `--no-labels` (disable
 per-stroke character labels in the render).
+
+`--image PATH`: condition generation on an image too, for multimodal-trained
+adapters (e.g. v6/v7) — without it, even a multimodal adapter is tested text-only.
+
+## Benchmarking an Adapter
+
+Run after training finishes to score an adapter against a sample of its
+validation (or test) split, instead of eyeballing one-off `infer_stroke.py` calls:
+
+```bash
+python code/training/benchmark_adapter.py \
+  --adapter-dir outputs/qwen2vl-calliar-aug-stroke-lora_v7 \
+  --data-dir sedrah_pipeline/calliar_combined_dataset/json \
+  --image-manifest sedrah_pipeline/calliar_combined_dataset/image_manifest.jsonl \
+  --num-samples 30
+```
+
+This writes/appends three files (paths configurable via `--log-path`,
+`--per-sample-log`, `--plot`; set either log path to `''` to disable it):
+
+```text
+adapter_benchmark_log.csv         one row per benchmark run (mean DTW/precision/recall, parse success rate)
+adapter_benchmark_per_sample.csv  one row per evaluated sample, for digging into specific failures
+adapter_benchmark_history.png     precision/recall/parse-rate and DTW distance plotted across every run logged so far
+```
+
+`--tag` labels the row (defaults to the adapter directory's name, e.g. `v7`) —
+use the same `--num-samples`/`--seed` across runs (defaults: `30`/`42`) so
+different adapters are scored on the *same* sampled set, for a fair comparison.
+`--split` defaults to `validation`; `--threshold` (passed through to
+`trajectory_eval`) defaults to `0.05`. Generation parameters
+(`--max-new-tokens`, `--do-sample`, `--repetition-penalty`, etc.) match
+`infer_stroke.py`'s, with the same defaults and the same repetition-penalty
+warning above.
+
+### Running it automatically after training
+
+There's no separate watcher process — chain it onto the training command with
+`&&`, so it only runs once training actually exits cleanly:
+
+```bash
+accelerate launch --num_processes=8 code/training/train_sandbox.py \
+  --output-dir outputs/qwen2vl-calliar-aug-stroke-lora_v8 \
+  ... \
+  > train_run_v8.log 2>&1 && \
+python code/training/benchmark_adapter.py \
+  --adapter-dir outputs/qwen2vl-calliar-aug-stroke-lora_v8 \
+  --image-manifest sedrah_pipeline/calliar_combined_dataset/image_manifest.jsonl
+```
 
 ## Evaluating Predictions
 

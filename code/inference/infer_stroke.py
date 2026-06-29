@@ -51,9 +51,8 @@ def extract_json_object(text):
 
 def load_model(model_id, adapter_dir, device):
     processor = AutoProcessor.from_pretrained(model_id)
-    tokenizer = processor.tokenizer
-    if tokenizer.pad_token is None:
-        tokenizer.pad_token = tokenizer.eos_token
+    if processor.tokenizer.pad_token is None:
+        processor.tokenizer.pad_token = processor.tokenizer.eos_token
 
     dtype = torch.bfloat16 if device.type == "cuda" else torch.float32
     base_model = Qwen2VLForConditionalGeneration.from_pretrained(
@@ -62,15 +61,21 @@ def load_model(model_id, adapter_dir, device):
     model = PeftModel.from_pretrained(base_model, adapter_dir)
     model.to(device)
     model.eval()
-    return model, tokenizer
+    return model, processor
 
 
 def generate_stroke_text(
-    model, tokenizer, text, device, max_new_tokens, do_sample, temperature, top_p, repetition_penalty, no_repeat_ngram_size
+    model, processor, text, device, max_new_tokens, do_sample, temperature, top_p,
+    repetition_penalty, no_repeat_ngram_size, image=None,
 ):
-    collator = JsonOnlyCollator(tokenizer)
-    prompt = collator.build_prompt(text)
-    inputs = tokenizer(prompt, return_tensors="pt", add_special_tokens=False).to(device)
+    tokenizer = processor.tokenizer
+    collator = JsonOnlyCollator(processor)
+    prompt = collator.build_prompt(text, has_image=image is not None)
+
+    if image is not None:
+        inputs = processor(text=[prompt], images=[image], return_tensors="pt").to(device)
+    else:
+        inputs = tokenizer(prompt, return_tensors="pt", add_special_tokens=False).to(device)
 
     gen_kwargs = dict(
         max_new_tokens=max_new_tokens,
@@ -120,11 +125,11 @@ def render_strokes(strokes, output_path, canvas_size, fit_coords, labels):
     canvas.save(output_path)
 
 
-def run_one(model, tokenizer, device, text, args, index):
-    print(f"\n>>> Generating strokes for: {text!r}")
+def run_one(model, processor, device, text, args, index, image=None):
+    print(f"\n>>> Generating strokes for: {text!r}{' (with image)' if image is not None else ''}")
     generated_text = generate_stroke_text(
         model,
-        tokenizer,
+        processor,
         text,
         device,
         max_new_tokens=args.max_new_tokens,
@@ -133,6 +138,7 @@ def run_one(model, tokenizer, device, text, args, index):
         top_p=args.top_p,
         repetition_penalty=args.repetition_penalty,
         no_repeat_ngram_size=args.no_repeat_ngram_size,
+        image=image,
     )
 
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -187,11 +193,13 @@ def main():
         device = torch.device(args.device)
 
     print(f"Loading base model {args.model_id} + adapter {args.adapter_dir} on {device} ...")
-    model, tokenizer = load_model(args.model_id, args.adapter_dir, device)
+    model, processor = load_model(args.model_id, args.adapter_dir, device)
     print("Model ready.")
 
+    image = Image.open(args.image).convert("RGB") if args.image else None
+
     if args.text:
-        run_one(model, tokenizer, device, args.text, args, index=0)
+        run_one(model, processor, device, args.text, args, index=0, image=image)
         return
 
     print("Interactive mode. Type Arabic text (a letter, word, or phrase) and press Enter.")
@@ -207,7 +215,7 @@ def main():
         if text.lower() in {"quit", "exit"}:
             break
         index += 1
-        run_one(model, tokenizer, device, text, args, index=index)
+        run_one(model, processor, device, text, args, index=index, image=image)
 
 
 def build_arg_parser():
@@ -218,6 +226,7 @@ def build_arg_parser():
     parser.add_argument("--adapter-dir", default="outputs/qwen2vl-sedrah-stroke-lora_v4")
     parser.add_argument("--device", choices=["auto", "cuda", "cpu"], default="auto")
     parser.add_argument("--text", help="Single Arabic text to render once, instead of entering interactive mode.")
+    parser.add_argument("--image", help="Optional image path to condition generation on (for multimodal-trained adapters).")
     parser.add_argument("--max-new-tokens", type=int, default=2048)
     parser.add_argument("--do-sample", action="store_true", help="Enable sampling instead of greedy decoding.")
     parser.add_argument("--temperature", type=float, default=0.7)

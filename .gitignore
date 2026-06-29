@@ -16,6 +16,12 @@ synthesis_arabic_data/
 outputs/
 inference-results/
 
+# Adapter benchmark run artifacts (regenerate via benchmark_adapter.py)
+/adapter_benchmark_log.csv
+/adapter_benchmark_per_sample.csv
+/adapter_benchmark_history.png
+/evaluation_log.csv
+
 # Active/ad-hoc training logs at repo root (completed runs live in log/)
 /train_run_*.log
 /train_run_*.pid
