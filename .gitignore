@@ -15,6 +15,7 @@ synthesis_arabic_data/
 # Model checkpoints / generated outputs
 outputs/
 inference-results/
+models/
 
 # Adapter benchmark run artifacts (regenerate via benchmark_adapter.py)
 /adapter_benchmark_log.csv

@@ -159,3 +159,21 @@ cd /home/nvidia/Qwen2-VL-2B
   --output-dir sedrah_pipeline/calliar_dataset_aug/imgs_rendered \
   --manifest-out sedrah_pipeline/calliar_dataset_aug/image_manifest.jsonl \
   --workers 8 2>&1 | tail -20
+
+
+  Good. To run it for v7 — merge only:
+
+
+python code/training/merge_and_push.py \
+  --adapter-dir outputs/qwen2vl-calliar-aug-stroke-lora_v7 \
+  --output-dir models/sedrah-arabic-stroke-v7
+To merge and push to your HF account in one step:
+
+
+python code/training/merge_and_push.py \
+  --adapter-dir outputs/qwen2vl-calliar-aug-stroke-lora_v7 \
+  --output-dir models/sedrah-arabic-stroke-v7 \
+  --push-to-hub \
+  --repo-id Ragaad/sedrah-arabic-stroke-v7 \
+  --private
+  
