@@ -5,8 +5,12 @@ import time
 from pathlib import Path
 
 import torch
+
+torch.backends.cuda.enable_flash_sdp(False)
+torch.backends.cuda.enable_mem_efficient_sdp(True)
+
 from accelerate import Accelerator
-from peft import LoraConfig, get_peft_model
+from peft import LoraConfig, PeftModel, get_peft_model
 from PIL import Image
 from torch.utils.data import DataLoader, Dataset
 from transformers import AutoProcessor, Qwen2VLForConditionalGeneration
@@ -66,6 +70,47 @@ def parse_sample_id(path):
     if sample_index.isdigit():
         return text.strip(), int(sample_index)
     return stem.strip(), None
+
+
+def to_relative_coords(strokes: list[dict]) -> list[dict]:
+    """
+    Convert absolute [x,y] points to relative offsets [dx,dy].
+
+    The first point of each stroke stays absolute (acts as pen-down anchor).
+    Subsequent points become deltas from the previous point.
+    This makes the representation canvas-position-invariant, which directly
+    reduces overfitting to specific regions of the training images.
+    """
+    result = []
+    for stroke in strokes:
+        pts = stroke["points"]
+        if not pts:
+            result.append(stroke)
+            continue
+        rel_pts = [pts[0]]  # first point: absolute anchor
+        for i in range(1, len(pts)):
+            dx = round(pts[i][0] - pts[i - 1][0], 4)
+            dy = round(pts[i][1] - pts[i - 1][1], 4)
+            rel_pts.append([dx, dy])
+        result.append({"label": stroke["label"], "points": rel_pts})
+    return result
+
+
+def from_relative_coords(strokes: list[dict]) -> list[dict]:
+    """Inverse of to_relative_coords — reconstructs absolute positions."""
+    result = []
+    for stroke in strokes:
+        pts = stroke["points"]
+        if not pts:
+            result.append(stroke)
+            continue
+        abs_pts = [pts[0]]
+        for i in range(1, len(pts)):
+            ax = round(abs_pts[-1][0] + pts[i][0], 4)
+            ay = round(abs_pts[-1][1] + pts[i][1], 4)
+            abs_pts.append([ax, ay])
+        result.append({"label": stroke["label"], "points": abs_pts})
+    return result
 
 
 def normalize_point(point, decimals):
@@ -146,7 +191,7 @@ def load_stroke_json(path, decimals=2, prune_epsilon=0.0):
 
 
 class SedrahJsonStrokeDataset(Dataset):
-    def __init__(self, data_dir, split="train", max_samples=None, decimals=2, prune_epsilon=0.0, image_lookup=None):
+    def __init__(self, data_dir, split="train", max_samples=None, decimals=2, prune_epsilon=0.0, image_lookup=None, relative_coords=False):
         if split not in SPLIT_DIRS:
             raise ValueError(f"Invalid split {split!r}. Expected one of {sorted(SPLIT_DIRS)}.")
 
@@ -154,6 +199,7 @@ class SedrahJsonStrokeDataset(Dataset):
         self.json_dir = Path(data_dir) / SPLIT_DIRS[split]
         self.decimals = decimals
         self.prune_epsilon = prune_epsilon
+        self.relative_coords = relative_coords
         self.image_lookup = image_lookup or {}
         self.files = sorted(self.json_dir.glob("*.json"))
 
@@ -172,6 +218,8 @@ class SedrahJsonStrokeDataset(Dataset):
         path = self.files[idx]
         text, sample_index = parse_sample_id(path)
         strokes = load_stroke_json(path, decimals=self.decimals, prune_epsilon=self.prune_epsilon)
+        if self.relative_coords:
+            strokes = to_relative_coords(strokes)
 
         target = {
             "text": text,
@@ -318,6 +366,7 @@ def run_sandbox_pipeline(args):
         decimals=args.decimals,
         prune_epsilon=args.prune_epsilon,
         image_lookup=image_lookup,
+        relative_coords=args.relative_coords,
     )
     val_dataset = SedrahJsonStrokeDataset(
         args.data_dir,
@@ -326,6 +375,7 @@ def run_sandbox_pipeline(args):
         decimals=args.decimals,
         prune_epsilon=args.prune_epsilon,
         image_lookup=image_lookup,
+        relative_coords=args.relative_coords,
     )
 
     if args.dry_run:
@@ -352,15 +402,20 @@ def run_sandbox_pipeline(args):
     )
     model.gradient_checkpointing_enable()
 
-    peft_config = LoraConfig(
-        r=args.lora_rank,
-        lora_alpha=args.lora_alpha,
-        target_modules=["q_proj", "k_proj", "v_proj", "o_proj"],
-        lora_dropout=args.lora_dropout,
-        bias="none",
-        task_type="CAUSAL_LM",
-    )
-    model = get_peft_model(model, peft_config)
+    if args.resume_from_adapter:
+        if accelerator.is_main_process:
+            print(f"Resuming LoRA weights from {args.resume_from_adapter}")
+        model = PeftModel.from_pretrained(model, args.resume_from_adapter, is_trainable=True)
+    else:
+        peft_config = LoraConfig(
+            r=args.lora_rank,
+            lora_alpha=args.lora_alpha,
+            target_modules=["q_proj", "k_proj", "v_proj", "o_proj"],
+            lora_dropout=args.lora_dropout,
+            bias="none",
+            task_type="CAUSAL_LM",
+        )
+        model = get_peft_model(model, peft_config)
     if accelerator.is_main_process:
         model.print_trainable_parameters()
 
@@ -505,6 +560,21 @@ def build_arg_parser():
     parser.add_argument("--max-val-samples", type=int)
     parser.add_argument("--log-every", type=int, default=10)
     parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument(
+        "--relative-coords",
+        action="store_true",
+        help="Convert absolute [x,y] points to relative offsets [dx,dy] from the previous "
+        "point. The first point of each stroke stays absolute. Reduces overfitting to canvas "
+        "position and improves generalisation to unseen handwriting styles.",
+    )
+    parser.add_argument(
+        "--resume-from-adapter",
+        default=None,
+        help="Path to an existing LoRA adapter directory to use as weight initialization "
+        "(e.g. outputs/qwen2vl-calliar-aug-stroke-lora_v7). The base --model-id must match "
+        "the adapter's base model. LoRA rank/alpha are read from the adapter config, "
+        "so --lora-rank/--lora-alpha are ignored when this is set.",
+    )
     return parser
 
 

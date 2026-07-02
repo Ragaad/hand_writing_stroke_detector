@@ -10,3 +10,7 @@ pypdf>=4.0.0
 scipy>=1.13.0
 fastdtw>=0.3.4
 matplotlib>=3.8.0
+opencv-python-headless>=4.8.0
+scikit-image>=0.22.0
+pandas>=2.0.0
+pyarrow>=14.0.0
